@@ -1,0 +1,63 @@
+
+def cautare_binara(sir, numar, inceput, sfarsit):
+    mijloc = (inceput + sfarsit) // 2
+    if inceput > sfarsit:
+        return -1
+    if numar > sir[mijloc]:
+        return cautare_binara(sir, numar, mijloc + 1, sfarsit)
+    elif numar < sir[mijloc]:
+        return cautare_binara(sir, numar, inceput, mijloc - 1)
+    elif numar == sir[mijloc]:
+        return mijloc
+    else:
+        return -1
+
+def fibonacci(nr_elem):
+    list = [1, 1]
+    for i in range(2, nr_elem):
+        list.append(list[-1] + list[-2])
+    return list
+
+def prod_sir(sir):
+    prod = 1
+    for i in range(0, len(sir)):
+        prod *= sir[i]
+
+    return prod
+
+def invers_sir(sir):
+    sir_inv = []
+    for i in reversed(sir):
+        sir_inv.append(i)
+    return sir_inv
+
+def sir_palindrom(sir):
+    if sir == invers_sir(sir):
+        return True
+    return False
+
+def main():
+    sir = [1, 2, 5, 8, 12, 23, 45, 54, 66]
+    numar = 0
+    poz = cautare_binara(sir, numar, 0, len(sir) - 1)
+    if  poz != -1:
+        print("Numarul {0} s-a gasit in sir la pozitia {1}".format(numar, poz))
+    else:
+        print("Numarul {0} nu s-a gasit in sir".format(numar))
+
+    nr_elem = 10
+    fib = fibonacci(nr_elem)
+    print("Primele {0} numere din seria fibonacci sunt {1}".format(nr_elem, fib))
+
+    print("Produsul acestor numere este {0}".format(prod_sir(fib)))
+
+    print("Inversul sirului fibonacci este {0}".format(invers_sir(fib)))
+
+    sir1 = [1, 2, 3, 2, 1]
+    if sir_palindrom(sir1):
+        print("Sirul {0} este palindrom".format(sir1))
+    else:
+        print("Sirul {0} nu este palindrom".format(sir1))
+
+if __name__ == "__main__":
+    main()
